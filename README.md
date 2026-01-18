@@ -77,9 +77,67 @@ This project does **not** aim to be a full or optimized reproduction of the orig
 
 ---
 
-## Installation
+## Installation 
 
 1. **Clone the repository**
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
+```
+
+2. **Create and activate a virtual environment**
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux / macOS
+source venv/bin/activate
+```
+
+3. **Upgrade pip**
+```bash
+python -m pip install --upgrade pip
+```
+
+4. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+This project provides an interactive web-based interface for text generation using pretrained Mamba language models.
+
+### Running the Application
+
+To start the application, run the Streamlit app from the project root:
+
+```bash
+streamlit run app.py
+```
+
+## Pretrained Models
+
+This project supports loading **official pretrained Mamba language models** released by the authors of the Mamba architecture. The models are automatically downloaded from the Hugging Face Hub at runtime.
+
+### Available Models
+
+- `state-spaces/mamba-130m`  
+  A lightweight Mamba model suitable for fast experimentation and limited hardware.
+
+- `state-spaces/mamba-370m`  
+  A larger model with improved generation quality and stronger language modeling capabilities.
+
+### Tokenizer
+
+All models use the tokenizer from:
+
+- `EleutherAI/gpt-neox-20b`
+
+This tokenizer is compatible with the pretrained Mamba checkpoints and is required for correct text encoding and decoding.
+
+### Loading Mechanism
+
+Pretrained weights and configuration files are fetched automatically using the Hugging Face `transformers` library. No manual download is required.
+
+The models are loaded once at application startup and cached to avoid repeated initialization.
